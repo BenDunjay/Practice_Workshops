@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -8,5 +10,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :session, only: [:new, :create, :destroy]
+  resource :session, only: %i[new create destroy]
 end

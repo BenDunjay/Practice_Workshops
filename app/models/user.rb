@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# comment
 class User < ApplicationRecord
   #   include GenerateToken
 
@@ -11,7 +14,7 @@ class User < ApplicationRecord
   private
 
   def downcase_email
-    self.email = self.email.delete(" ").downcase
+    self.email = email.delete(' ').downcase
   end
 
   def generate_confirmation_instructions
@@ -20,8 +23,6 @@ class User < ApplicationRecord
   end
 
   def create_confirmation_token
-    if self.confirmation_token.blank?
-      self.confirmation_token = SecureRandom.urlsafe_base64.to_s
-    end
+    self.confirmation_token = SecureRandom.urlsafe_base64.to_s if confirmation_token.blank?
   end
 end

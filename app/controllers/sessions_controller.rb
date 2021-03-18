@@ -1,14 +1,15 @@
+# frozen_string_literal: true
+
+# comment
 class SessionsController < ApplicationController
-  def new
-  end
+  def new; end
 
   def create
     user = User.where(email: user_login_params[:email]).first
     if valid_session?(user)
-      byebug
-      render json: { message: "Successfully signed in." }, status: :created
+      render json: { message: 'Successfully signed in.' }, status: :created
     else
-      render json: { message: "invalid name or password" }, status: :unauthorized
+      render json: { message: 'invalid name or password' }, status: :unauthorized
     end
   end
 
@@ -22,11 +23,7 @@ class SessionsController < ApplicationController
   attr_reader :user
 
   def valid_session?(user)
-    if user && user.authenticate(user_login_params[:password])
-      session[:user_id] = user.id
-    else
-      #   ValidationError => e
-    end
+    session[:user_id] = user.id if user&.authenticate(user_login_params[:password])
   end
 
   def user_login_params
