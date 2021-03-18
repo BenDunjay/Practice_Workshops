@@ -20,7 +20,6 @@ class User < ApplicationRecord
   end
 
   def create_confirmation_token
-    byebug
     if self.confirmation_token.blank?
       self.confirmation_token = SecureRandom.urlsafe_base64.to_s
     end
