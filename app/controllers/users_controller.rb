@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   def create
-    user = User.new(user_params)
-    if user.save
-      render json: { status: "User created successfully" }, status: :created
+    user = User.create(user_params)
+    if user.valid?
+      ApplicationMailer.registration_confirmation(user).deliver
+      render json: { status: "User created successfully, please confirm your email address to continue." }, status: :created
     else
       render json: { errors: user.errors.full_messages }, status: :bad_request
     end
@@ -11,6 +12,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation, :name)
   end
 end

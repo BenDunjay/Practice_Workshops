@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       get :confirm_email
     end
   end
+
+  resource :session, only: [:new, :create, :destroy]
 end

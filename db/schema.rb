@@ -13,6 +13,7 @@
 ActiveRecord::Schema.define(version: 2021_03_18_103737) do
 
   create_table "users", force: :cascade do |t|
+    t.string "name"
     t.string "email", null: false
     t.string "password_digest", null: false
     t.string "confirmation_token"
