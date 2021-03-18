@@ -8,14 +8,20 @@ class User < ApplicationRecord
   before_save :downcase_email
   before_create :generate_confirmation_instructions
 
+  private
+
   def downcase_email
     self.email = self.email.delete(" ").downcase
   end
 
   def generate_confirmation_instructions
-    # byebug
-    # self.confirmation_token = GenerateToken.new.generate_token
-    self.confirmation_token = SecureRandom.hex(10)
+    create_confirmation_token
     self.confirmation_sent_at = Time.now.utc
+  end
+
+  def create_confirmation_token
+    if self.confirmation_token.blank?
+      self.confirmation_token = SecureRandom.urlsafe_base64.to_s
+    end
   end
 end

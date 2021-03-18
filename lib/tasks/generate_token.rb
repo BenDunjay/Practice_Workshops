@@ -1,6 +1,6 @@
 require "securerandom"
 
-module GenerateToken
+class GenerateToken
   extend ActiveSupport::Concern
 
   def generate_token(type = :base64)
