@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: "bendunjay@outlook.com"
+  default from: "default@outlook.com"
   layout "mailer"
 
   def registration_confirmation(user)
