@@ -2,7 +2,7 @@
 
 # comment
 class User < ApplicationRecord
-  #   include GenerateToken
+  # include GenerateToken
 
   has_secure_password
   validates_presence_of :email
@@ -14,7 +14,7 @@ class User < ApplicationRecord
   private
 
   def downcase_email
-    self.email = email.delete(' ').downcase
+    self.email = email.delete(" ").downcase
   end
 
   def generate_confirmation_instructions
@@ -23,6 +23,6 @@ class User < ApplicationRecord
   end
 
   def create_confirmation_token
-    self.confirmation_token = SecureRandom.urlsafe_base64.to_s if confirmation_token.blank?
+    self.confirmation_token = SecureRandom.urlsafe_base64(15).tr("LI00", "sxyz") if confirmation_token.blank?
   end
 end

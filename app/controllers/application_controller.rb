@@ -11,6 +11,6 @@ class ApplicationController < ActionController::API
   protected
 
   def authenticate_user
-    redirect_to new_session_url, alert: 'You need to sign in or sign up before continuing.' unless current_user
+    redirect_to new_session_url, alert: "You need to sign in or sign up before continuing." unless current_user
   end
 end

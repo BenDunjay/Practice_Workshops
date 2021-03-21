@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'securerandom'
+require "securerandom"
 
-class GenerateToken
+module GenerateToken
   extend ActiveSupport::Concern
 
   def generate_token(type = :base64)
@@ -17,7 +17,7 @@ class GenerateToken
   def new_token(type)
     case type.to_sym
     when :base64
-      SecureRandom.urlsafe_base64(15).tr('LI00', 'sxyz')
+      SecureRandom.urlsafe_base64(15).tr("LI00", "sxyz")
     end
   end
 end
