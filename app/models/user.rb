@@ -10,10 +10,13 @@ class User < ApplicationRecord
   validates_format_of :email, with: /@/
   before_save :downcase_email
   before_create :generate_confirmation_instructions
+  # validates :password, current_password_matches: { message: "doesn't match" },
+  #  if: -> { password.present? }
 
   private
 
   def downcase_email
+    byebug
     self.email = email.delete(" ").downcase
   end
 
