@@ -2,7 +2,6 @@
 
 # comment
 class ApplicationMailer < ActionMailer::Base
-  default from: "bendunjay@outlook.com"
+  default from: "random@outlook.com"
   layout "mailer"
-
 end
